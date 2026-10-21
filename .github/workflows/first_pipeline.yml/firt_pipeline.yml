@@ -1,0 +1,10 @@
+name: Pipeline CI
+on:
+  push:
+    branches: ["Main"]
+jobs:
+  testesUnitarios:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+      - uses: actions/checkout@v3
