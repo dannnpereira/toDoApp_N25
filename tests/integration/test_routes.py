@@ -98,3 +98,16 @@ def test_api_deletar_tarefa_com_sucesso(client):
 
     res_busca = client.get(f"/api/todos/{id_criado}")
     assert res_busca.status_code == 404
+
+def test_api_criar_tarefa_com_titulo_vazio_deve_retornar_400(client):
+    """
+    Testa a validação de erro ao criar tarefa com o campo 'title' vazio.
+    """
+    payload = {"title": "  ", "description": "Descrição sem título"}
+    response = client.post("/api/todos", json=payload)
+
+    assert response.status_code == 400
+    data = response.get_json()
+    assert "error" in data
+
+
